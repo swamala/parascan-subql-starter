@@ -7,7 +7,7 @@ schema:
   file: ./schema.graphql
 
 network:
-  endpoint: wss://sirius-explorer.origin-trail.network
+  endpoint: "wss://sirius-22.origin-trail.network"
   genesisHash: "0xe7e0962324a3b86c83404dbea483f25fb5dab4c224791c81b756cfc948006174"
 
 dataSources:
@@ -16,6 +16,11 @@ dataSources:
     mapping:
       file: ./dist/index.js
       handlers:
+        - handler: handleEvent
+          kind: substrate/EventHandler
+          filter:
+            module: balances
+            method: Transfer        
         - handler: handleBlock
           kind: substrate/BlockHandler
         - handler: handleEvent
